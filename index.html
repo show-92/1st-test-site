@@ -2,61 +2,138 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <title>My Experimental Site</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>show92の実験的ウェブサイト</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-      color: #333;
-      margin: 0;
-      padding: 2rem;
-      line-height: 1.6;
+    :root {
+      --bg: #f5f7fa;
+      --text: #222;
+      --accent: #0070f3;
+      --card: white;
     }
+
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #eee;
+      --accent: #66ccff;
+      --card: #2a2a2a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", sans-serif;
+      line-height: 1.8;
+      padding: 2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
     header {
       text-align: center;
-      padding: 2rem 0;
+      margin-bottom: 3rem;
     }
+
     h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 0.5rem;
     }
-    main {
-      max-width: 600px;
-      margin: 0 auto;
+
+    .lead {
+      font-size: 1.2rem;
+      color: var(--text);
     }
+
+    .toggle-btn {
+      margin-top: 1rem;
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
     section {
-      margin-bottom: 2rem;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s;
     }
+
+    h2 {
+      color: var(--accent);
+      border-bottom: 2px solid #ccc;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
     footer {
       text-align: center;
+      margin-top: 4rem;
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 3rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>こんにちは、これは実験サイトです</h1>
-    <p>by show92</p>
+    <h1>My Experimental Site</h1>
+    <p class="lead">実験的に立ち上げたウェブサイト</p>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 モード切り替え</button>
   </header>
-  <main>
-    <section>
-      <h2>👨‍💻 自己紹介</h2>
-      <p>これは私の実験的ウェブサイトです。HTMLとCSSだけで構成されています。</p>
-    </section>
-    <section>
-      <h2>🧪 試したいこと</h2>
-      <ul>
-        <li>HTMLの構造を理解する</li>
-        <li>CSSでデザインを調整する</li>
-        <li>Webに公開する</li>
-      </ul>
-    </section>
-  </main>
+
+  <section>
+    <h2>自己紹介</h2>
+    <p>こんにちは！これはshow92のテストサイトです。HTMLとCSSで構成された、シンプルで洗練されたデザインを目指しています。</p>
+  </section>
+
+  <section>
+    <h2>やりたいこと</h2>
+    <ul>
+      <li>HTMLとCSSのスキルを上げる</li>
+      <li>ポートフォリオとして使えるようにする</li>
+      <li>技術を世界に公開する</li>
+    </ul>
+  </section>
+
   <footer>
-    © 2025 実験用サイト
+    &copy; 2025 My Experimental Site
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
 </body>
 </html>
+
