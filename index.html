@@ -31,6 +31,10 @@
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
   </style>
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
 </head>
 <body>
   <header>
@@ -44,16 +48,37 @@
   </section>
 
   <section>
-  <h2>🌐 世界の地震情報（リアルタイム）</h2>
-  <p>USGS提供地震マップ。</p>
-    <iframe 
-  src="https://earthquake.usgs.gov/earthquakes/map/?extent=20,120&extent=50,150"
-  width="100%" 
-  height="600" 
-  frameborder="0"
-  style="border: 2px solid #ccc; border-radius: 8px;">
-    </iframe>
-  </section>
+  <h2>日本周辺のリアルタイム地震</h2>
+  <div id="quakeMap" style="height: 500px; border-radius: 8px;"></div>
+</section>
+
+<script>
+  const map = L.map('quakeMap').setView([36, 138], 5); // 日本中心
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // USGSのAPI（過去24時間のM4.5以上の地震）
+  fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson')
+    .then(response => response.json())
+    .then(data => {
+      data.features.forEach(eq => {
+        const coords = eq.geometry.coordinates;
+        const mag = eq.properties.mag;
+        const place = eq.properties.place;
+        const time = new Date(eq.properties.time).toLocaleString();
+
+        L.circleMarker([coords[1], coords[0]], {
+          radius: mag * 2,
+          color: 'red',
+          fillOpacity: 0.5
+        }).addTo(map)
+          .bindPopup(`<strong>${place}</strong><br>Magnitude: ${mag}<br>${time}`);
+      });
+    });
+</script>
+
 
 
 </body>
