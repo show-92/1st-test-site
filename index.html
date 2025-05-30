@@ -31,9 +31,6 @@
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
   </style>
-  <!-- Leaflet CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   
 </head>
 <body>
@@ -46,39 +43,6 @@
     <p>地球の風の流れをリアルタイムで見ることができるビジュアライゼーション。</p>
     <iframe src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=138.08,36.52,300" height="500"></iframe>
   </section>
-
-  <section>
-  <h2>日本周辺のリアルタイム地震</h2>
-  <div id="quakeMap" style="height: 500px; border-radius: 8px;"></div>
-</section>
-
-<script>
-  const map = L.map('quakeMap').setView([36, 138], 5); // 日本中心
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  // USGSのAPI（過去24時間のM4.5以上の地震）
-  fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson')
-    .then(response => response.json())
-    .then(data => {
-      data.features.forEach(eq => {
-        const coords = eq.geometry.coordinates;
-        const mag = eq.properties.mag;
-        const place = eq.properties.place;
-        const time = new Date(eq.properties.time).toLocaleString();
-
-        L.circleMarker([coords[1], coords[0]], {
-          radius: mag * 2,
-          color: 'red',
-          fillOpacity: 0.5
-        }).addTo(map)
-          .bindPopup(`<strong>${place}</strong><br>Magnitude: ${mag}<br>${time}`);
-      });
-    });
-</script>
-
 
 
 </body>
