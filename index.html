@@ -1,139 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Experimental Site</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --bg: #f5f7fa;
-      --text: #222;
-      --accent: #0070f3;
-      --card: white;
-    }
-
-    body.dark {
-      --bg: #1a1a1a;
-      --text: #eee;
-      --accent: #66ccff;
-      --card: #2a2a2a;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Helvetica Neue", sans-serif;
-      line-height: 1.8;
-      padding: 2rem;
-      transition: background 0.3s, color 0.3s;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #111;
+      color: #eee;
     }
-
     header {
+      background: #222;
+      padding: 1rem;
       text-align: center;
-      margin-bottom: 3rem;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .lead {
-      font-size: 1.2rem;
-      color: var(--text);
-    }
-
-    .toggle-btn {
-      margin-top: 1rem;
-      background: none;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .toggle-btn:hover {
-      background: var(--accent);
-      color: white;
-    }
-
     section {
-      max-width: 800px;
-      margin: 0 auto 3rem auto;
-      background: var(--card);
-      border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: background 0.3s;
+      max-width: 800px;
+      margin: auto;
     }
-
-    h2 {
-      color: var(--accent);
-      border-bottom: 2px solid #ccc;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      section {
-        padding: 1.5rem;
-      }
+    iframe {
+      width: 100%;
+      border: none;
+      margin: 1rem 0;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>My Experimental Site</h1>
-    <p class="lead">実験的に立ち上げたウェブサイト</p>
-    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 モード切り替え</button>
+    🌍 実験的ウェブサイト
   </header>
 
   <section>
-    <h2>自己紹介</h2>
-    <p>こんにちは！これはshow92のテストサイトです。HTMLとCSSで構成された、シンプルで洗練されたデザインを目指しています。</p>
+    <h2>🌀 リアルタイム地球ビュー</h2>
+    <p>地球の風の流れをリアルタイムで見ることができるビジュアライゼーション。</p>
+    <iframe src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=138.08,36.52,300" height="500"></iframe>
   </section>
 
   <section>
-    <h2>やりたいこと</h2>
-    <ul>
-      <li>HTMLとCSSのスキルを上げる</li>
-      <li>ポートフォリオとして使えるようにする</li>
-      <li>技術を世界に公開する</li>
-    </ul>
+    <h2>🐍 懐かしのスネークゲーム</h2>
+    <p>暇つぶしにどうぞ！</p>
+    <iframe src="https://playsnake.org/" height="400"></iframe>
   </section>
-
-  <footer>
-    &copy; 2025 My Experimental Site
-  </footer>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
-  </script>
 </body>
 </html>
-
